@@ -1,24 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById("about");
+    if (!target) return;
+
+    const headerOffset = 96;
+    const y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
   };
 
   return (
     <section className="relative min-h-screen flex items-center bg-[#0B1D3A]">
-      {/* Subtle background image overlay */}
+      {/* Container ship background */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=1800&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=2200&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D3A]/60 via-transparent to-[#0B1D3A]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D3A]/70 via-[#0B1D3A]/45 to-[#0B1D3A] pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 pointer-events-auto">
         <p className="text-[#0E7C86] text-sm font-medium tracking-widest uppercase mb-6">
           Sea Freight · Container Shipping · B2B Logistics
         </p>
@@ -30,17 +36,18 @@ export default function HeroSection() {
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <button
+            type="button"
             onClick={scrollToAbout}
             className="px-7 py-3 bg-[#0E7C86] text-white text-sm font-medium hover:bg-[#0a6670] transition-colors duration-200"
           >
             Learn More
           </button>
-          <a
-            href="mailto:s.kovacevic@seacont.ch"
+          <Link
+            to="/contact"
             className="px-7 py-3 border border-white/25 text-white text-sm font-medium hover:border-white/50 transition-colors duration-200 text-center"
           >
             Contact Us
-          </a>
+          </Link>
         </div>
       </div>
     </section>

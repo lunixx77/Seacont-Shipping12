@@ -1,47 +1,111 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import seacontLogo from "@/assets/seacont-logo.png";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", section: "about" },
+  { label: "Services", section: "services" },
 ];
+const HEADER_OFFSET = 80;
+
+function smoothScrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return false;
+  const y = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+  window.scrollTo({ top: y, behavior: "smooth" });
+  return true;
+}
+
+function waitAndScroll(id, attempts = 20) {
+  if (smoothScrollTo(id)) return;
+  if (attempts <= 0) return;
+  setTimeout(() => waitAndScroll(id, attempts - 1), 80);
+}
 
 export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
+  const [darkBackground, setDarkBackground] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const updateHeaderState = useCallback(() => {
+    setScrolled(window.scrollY > 50);
+
+    if (location.pathname !== "/") {
+      setDarkBackground(false);
+      return;
+    }
+
+    const about = document.getElementById("about");
+    const contact = document.getElementById("contact");
+    const checkY = window.scrollY + HEADER_OFFSET;
+
+    const aboutTop = about?.offsetTop ?? Infinity;
+    const contactTop = contact?.offsetTop ?? Infinity;
+    const contactBottom = contact ? contactTop + contact.offsetHeight : -Infinity;
+
+    const isInHero = checkY < aboutTop - 20;
+    const isInDarkContact = checkY >= contactTop - 20 && checkY <= contactBottom;
+    setDarkBackground(isInHero || isInDarkContact);
+  }, [location.pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState);
+    window.addEventListener("resize", updateHeaderState);
+    return () => {
+      window.removeEventListener("scroll", updateHeaderState);
+      window.removeEventListener("resize", updateHeaderState);
+    };
+  }, [updateHeaderState]);
 
-  const handleNavClick = (href) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  const goToSection = useCallback(
+    (sectionId) => {
+      setMobileOpen(false);
+
+      if (location.pathname === "/") {
+        setTimeout(() => smoothScrollTo(sectionId), 350);
+        return;
+      }
+
+      navigate("/");
+      setTimeout(() => waitAndScroll(sectionId, 25), 400);
+    },
+    [location.pathname, navigate]
+  );
+
+  const goHome = useCallback(() => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname, navigate]);
+
+  const headerBg = mobileOpen
+    ? "bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-md py-2"
+    : darkBackground
+      ? "bg-[#0B1D3A]/40 backdrop-blur-md border-b border-white/10 py-2"
+      : scrolled
+        ? "bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-md py-2"
+        : "bg-white/80 backdrop-blur-md border-b border-slate-100 py-2";
+
+  const iconColor = darkBackground && !mobileOpen
+    ? "text-white hover:text-white"
+    : "text-[#0B1D3A] hover:text-[#0B1D3A]";
 
   return (
     <div className="font-sans antialiased">
-      {/* Fixed navbar */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white shadow-md py-2"
-            : "bg-white/95 py-2"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center"
-          >
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+          <button onClick={goHome} className="flex items-center text-left shrink-0">
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a02208cf7c35caa743d548/0ee7bd710_image001.jpg"
+              src={seacontLogo}
               alt="Seacont Shipping LLC"
               className="h-12 w-auto object-contain"
             />
@@ -51,27 +115,32 @@ export default function Layout({ children }) {
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
+                type="button"
                 key={link.label}
-                onClick={() => handleNavClick(link.href)}
-                className="text-[#0B1D3A]/70 hover:text-[#0B1D3A] text-sm font-medium tracking-wide transition-colors duration-300"
+                onClick={() => goToSection(link.section)}
+                className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                  darkBackground
+                    ? "text-white/85 hover:text-white"
+                    : "text-[#0B1D3A]/70 hover:text-[#0B1D3A]"
+                }`}
               >
                 {link.label}
               </button>
             ))}
-            <a
-              href="mailto:s.kovacevic@seacont.ch"
+            <Link
+              to="/contact"
               className="ml-2 px-5 py-2 text-sm font-medium text-white bg-[#0B1D3A] rounded-full hover:bg-[#0E7C86] transition-colors duration-300"
             >
               Contact Us
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-[#0B1D3A]/70 hover:text-[#0B1D3A] p-2"
+            className={`md:hidden p-2 transition-colors duration-200 ${iconColor}`}
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -82,31 +151,33 @@ export default function Layout({ children }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="md:hidden overflow-hidden"
             >
-              <div className="px-6 py-6 space-y-4">
+              <div className="px-6 py-5 space-y-4 border-t border-slate-100">
                 {navLinks.map((link) => (
                   <button
+                    type="button"
                     key={link.label}
-                    onClick={() => handleNavClick(link.href)}
-                    className="block text-[#0B1D3A]/70 hover:text-[#0B1D3A] text-base font-medium transition-colors w-full text-left"
+                    onClick={() => goToSection(link.section)}
+                    className="block text-[#0B1D3A] hover:text-[#0E7C86] text-base font-medium transition-colors w-full text-left"
                   >
                     {link.label}
                   </button>
                 ))}
-                <a
-                  href="mailto:s.kovacevic@seacont.ch"
+                <Link
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
                   className="inline-block mt-2 px-6 py-2.5 text-sm font-medium text-white bg-[#0B1D3A] rounded-full"
                 >
                   Contact Us
-                </a>
+                </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </header>
 
-      {/* Page content */}
       <main>{children}</main>
     </div>
   );

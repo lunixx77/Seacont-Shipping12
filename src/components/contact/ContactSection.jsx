@@ -3,7 +3,7 @@ import { Mail, MapPin, Building2 } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-24 md:py-28 bg-[#0B1D3A]">
+    <section id="contact" className="py-24 md:py-28 bg-[#0B1D3A] scroll-mt-28">
       <div className="max-w-6xl mx-auto px-6">
         <div className="border-l-2 border-[#0E7C86] pl-6 mb-14">
           <p className="text-xs text-[#0E7C86] font-semibold tracking-widest uppercase mb-2">Contact</p>

@@ -1,39 +1,25 @@
-**Welcome to your Base44 project** 
+# Seacont Shipping LLC Website
 
-**About**
+This repository contains the frontend website for Seacont Shipping LLC, built with React and Vite.
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+## Local development
 
-This project contains everything you need to run your app locally.
+1. Install dependencies:
+   `npm install`
+2. Start the development server:
+   `npm run dev`
+3. Open the URL shown in your terminal (for example `http://127.0.0.1:5173`).
 
-**Edit the code in your local development environment**
+## Build
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+- Create production build:
+  `npm run build`
+- Preview the build locally:
+  `npm run preview`
 
-**Prerequisites:** 
+## Lint
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
-
-```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
-
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
-```
-
-Run the app: `npm run dev`
-
-**Publish your changes**
-
-Open [Base44.com](http://Base44.com) and click on Publish.
-
-**Docs & Support**
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+- Run ESLint:
+  `npm run lint`
+- Auto-fix lint issues:
+  `npm run lint:fix`
