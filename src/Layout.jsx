@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import seacontLogo from "@/assets/seacont-logo.png";
 import ContactButton from "@/components/ui/ContactButton";
+import NavButton from "@/components/ui/NavButton";
 
 const navLinks = [
   { label: "About", section: "about" },
@@ -105,18 +106,16 @@ export default function Layout({ children }) {
           </button>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-12">
             {navLinks.map((link) => (
-              <button
-                type="button"
+              <NavButton
                 key={link.label}
+                label={link.label}
                 onClick={() => goToSection(link.section)}
-                className="text-sm font-medium tracking-wide transition-colors duration-300 text-[#0B1D3A]/70 hover:text-[#0B1D3A]"
-              >
-                {link.label}
-              </button>
+                className="text-sm font-medium tracking-wide text-[#0B1D3A]/70 hover:text-[#0B1D3A]"
+              />
             ))}
-            <ContactButton variant="pill" className="ml-2" />
+            <ContactButton variant="pill" className="ml-4" />
           </nav>
 
           {/* Mobile hamburger */}
@@ -138,16 +137,14 @@ export default function Layout({ children }) {
               transition={{ duration: 0.2 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="px-6 py-5 space-y-4 border-t border-slate-100">
+              <div className="px-6 py-5 flex flex-col items-start gap-2 border-t border-slate-100">
                 {navLinks.map((link) => (
-                  <button
-                    type="button"
+                  <NavButton
                     key={link.label}
+                    label={link.label}
                     onClick={() => goToSection(link.section)}
-                    className="block text-[#0B1D3A] hover:text-[#0E7C86] text-base font-medium transition-colors w-full text-left"
-                  >
-                    {link.label}
-                  </button>
+                    className="inline-block text-[#0B1D3A] hover:text-white text-base font-medium text-left"
+                  />
                 ))}
                 <ContactButton variant="pill-mobile" onClick={() => setMobileOpen(false)} />
               </div>
