@@ -18,7 +18,7 @@ export default function ContactSection() {
               For further information about our services and how we can support your business, please feel free to contact us directly.
             </p>
             <a
-              href="mailto:s.kovacevic@seacont.ch"
+              href="mailto:marketing@seacont.ch"
               className="inline-flex items-center gap-3 px-7 py-3 bg-[#0E7C86] text-white text-sm font-medium hover:bg-[#0a6670] transition-colors duration-200"
             >
               <Mail className="w-4 h-4" />
@@ -31,8 +31,8 @@ export default function ContactSection() {
               <Mail className="w-4 h-4 text-[#0E7C86] mt-0.5 flex-shrink-0" />
               <div>
                 <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Email</p>
-                <a href="mailto:s.kovacevic@seacont.ch" className="text-white hover:text-[#0E7C86] transition-colors text-sm">
-                  s.kovacevic@seacont.ch
+                <a href="mailto:marketing@seacont.ch" className="text-white hover:text-[#0E7C86] transition-colors text-sm">
+                  marketing@seacont.ch
                 </a>
               </div>
             </div>

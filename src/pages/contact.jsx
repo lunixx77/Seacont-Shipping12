@@ -36,7 +36,7 @@ export default function ContactPage() {
       ].join("\n")
     );
 
-    window.location.href = `mailto:s.kovacevic@seacont.ch?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:marketing@seacont.ch?subject=${subject}&body=${body}`;
 
     toast({
       title: "Draft opened",
@@ -68,8 +68,8 @@ export default function ContactPage() {
               <div className="space-y-4 text-sm">
                 <div>
                   <p className="text-slate-500 mb-1">Email</p>
-                  <a className="text-[#0B1D3A] hover:text-[#0E7C86] transition-colors" href="mailto:s.kovacevic@seacont.ch">
-                    s.kovacevic@seacont.ch
+                  <a className="text-[#0B1D3A] hover:text-[#0E7C86] transition-colors" href="mailto:marketing@seacont.ch">
+                    marketing@seacont.ch
                   </a>
                 </div>
                 <div>

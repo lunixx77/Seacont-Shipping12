@@ -85,17 +85,9 @@ export default function Layout({ children }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname, navigate]);
 
-  const headerBg = mobileOpen
-    ? "bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-md py-2"
-    : darkBackground
-      ? "bg-[#0B1D3A]/40 backdrop-blur-md border-b border-white/10 py-2"
-      : scrolled
-        ? "bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-md py-2"
-        : "bg-white/80 backdrop-blur-md border-b border-slate-100 py-2";
+  const headerBg = "bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm py-2";
 
-  const iconColor = darkBackground && !mobileOpen
-    ? "text-white hover:text-white"
-    : "text-[#0B1D3A] hover:text-[#0B1D3A]";
+  const iconColor = "text-[#0B1D3A] hover:text-[#0B1D3A]";
 
   return (
     <div className="font-sans antialiased">
@@ -118,11 +110,7 @@ export default function Layout({ children }) {
                 type="button"
                 key={link.label}
                 onClick={() => goToSection(link.section)}
-                className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
-                  darkBackground
-                    ? "text-white/85 hover:text-white"
-                    : "text-[#0B1D3A]/70 hover:text-[#0B1D3A]"
-                }`}
+                className="text-sm font-medium tracking-wide transition-colors duration-300 text-[#0B1D3A]/70 hover:text-[#0B1D3A]"
               >
                 {link.label}
               </button>
