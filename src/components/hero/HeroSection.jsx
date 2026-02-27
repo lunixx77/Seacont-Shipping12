@@ -12,7 +12,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[60vh] flex items-start bg-[#0B1D3A]">
+    <section className="relative min-h-[85vh] flex items-center bg-[#0B1D3A]">
       {/* Container ship background */}
       <div
         className="absolute inset-0 opacity-25 pointer-events-none"
@@ -24,7 +24,7 @@ export default function HeroSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D3A]/70 via-[#0B1D3A]/45 to-[#0B1D3A] pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-44 pb-32 pointer-events-auto">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 pointer-events-auto">
         <p className="text-[#0E7C86] text-sm font-medium tracking-widest uppercase mb-6">
           Sea Freight · Container Shipping · B2B Logistics
         </p>
