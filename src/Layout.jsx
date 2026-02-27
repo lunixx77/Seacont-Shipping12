@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import seacontLogo from "@/assets/seacont-logo.png";
+import ContactButton from "@/components/ui/ContactButton";
 
 const navLinks = [
   { label: "About", section: "about" },
@@ -115,12 +116,7 @@ export default function Layout({ children }) {
                 {link.label}
               </button>
             ))}
-            <Link
-              to="/contact"
-              className="ml-2 px-5 py-2 text-sm font-medium text-white bg-[#0B1D3A] rounded-full hover:bg-[#0E7C86] transition-colors duration-300"
-            >
-              Contact Us
-            </Link>
+            <ContactButton variant="pill" className="ml-2" />
           </nav>
 
           {/* Mobile hamburger */}
@@ -153,13 +149,7 @@ export default function Layout({ children }) {
                     {link.label}
                   </button>
                 ))}
-                <Link
-                  to="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-block mt-2 px-6 py-2.5 text-sm font-medium text-white bg-[#0B1D3A] rounded-full"
-                >
-                  Contact Us
-                </Link>
+                <ContactButton variant="pill-mobile" onClick={() => setMobileOpen(false)} />
               </div>
             </motion.div>
           )}

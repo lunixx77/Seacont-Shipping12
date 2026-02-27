@@ -86,11 +86,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-            <div className="mt-5 border border-slate-200 rounded-xl p-5">
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Your information is used only for contact and offer preparation.
-              </p>
-            </div>
           </aside>
 
           <form

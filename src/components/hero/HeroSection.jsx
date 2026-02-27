@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ContactButton from "@/components/ui/ContactButton";
 
 export default function HeroSection() {
   const scrollToAbout = () => {
@@ -42,12 +42,7 @@ export default function HeroSection() {
           >
             Learn More
           </button>
-          <Link
-            to="/contact"
-            className="px-7 py-3 border border-white/25 text-white text-sm font-medium hover:border-white/50 transition-colors duration-200 text-center"
-          >
-            Contact Us
-          </Link>
+          <ContactButton variant="outline" />
         </div>
       </div>
     </section>
