@@ -12,7 +12,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[50vh] flex items-start bg-[#0B1D3A]">
+    <section className="relative min-h-[60vh] flex items-start bg-[#0B1D3A]">
       {/* Container ship background */}
       <div
         className="absolute inset-0 opacity-25 pointer-events-none"
