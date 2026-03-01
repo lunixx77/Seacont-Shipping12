@@ -9,6 +9,7 @@ import NavButton from "@/components/ui/NavButton";
 const navLinks = [
   { label: "About", section: "about" },
   { label: "Services", section: "services" },
+  { label: "Historie", section: "leadership" },
 ];
 const HEADER_OFFSET = 80;
 
@@ -79,6 +80,14 @@ export default function Layout({ children }) {
     [location.pathname, navigate]
   );
 
+  const goToPage = useCallback(
+    (page) => {
+      setMobileOpen(false);
+      navigate(`/${page}`);
+    },
+    [navigate]
+  );
+
   const goHome = useCallback(() => {
     if (location.pathname !== "/") {
       navigate("/");
@@ -111,7 +120,7 @@ export default function Layout({ children }) {
               <NavButton
                 key={link.label}
                 label={link.label}
-                onClick={() => goToSection(link.section)}
+                onClick={() => link.page ? goToPage(link.page) : goToSection(link.section)}
                 className="text-sm font-medium tracking-wide text-[#0B1D3A]/70 hover:text-[#0B1D3A]"
               />
             ))}
@@ -142,7 +151,7 @@ export default function Layout({ children }) {
                   <NavButton
                     key={link.label}
                     label={link.label}
-                    onClick={() => goToSection(link.section)}
+                    onClick={() => link.page ? goToPage(link.page) : goToSection(link.section)}
                     className="inline-block text-[#0B1D3A] hover:text-white text-base font-medium text-left"
                   />
                 ))}

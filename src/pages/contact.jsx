@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
 
 const initialForm = {
   name: "",
@@ -11,7 +10,6 @@ const initialForm = {
 
 export default function ContactPage() {
   const [form, setForm] = useState(initialForm);
-  const { toast } = useToast();
   const inputClassName =
     "w-full rounded-md border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:bg-white focus:border-[#0E7C86] focus:ring-2 focus:ring-[#0E7C86]/25";
 
@@ -37,11 +35,6 @@ export default function ContactPage() {
     );
 
     window.location.href = `mailto:marketing@seacont.ch?subject=${subject}&body=${body}`;
-
-    toast({
-      title: "Draft opened",
-      description: "Your email client was opened with your message details.",
-    });
 
     setForm(initialForm);
   };

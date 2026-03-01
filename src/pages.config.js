@@ -49,12 +49,14 @@
  */
 import Home from './pages/Home';
 import contact from './pages/contact';
+import historie from './pages/historie';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "Home": Home,
     "contact": contact,
+    "historie": historie,
 }
 
 export const pagesConfig = {

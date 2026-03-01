@@ -1,6 +1,7 @@
 import React from "react";
 import HeroSection from "../components/hero/HeroSection";
 import AboutSection from "../components/about/AboutSection";
+import LeadershipSection from "../components/leadership/LeadershipSection";
 import ServicesSection from "../components/services/ServicesSection";
 import ContactSection from "../components/contact/ContactSection";
 import Footer from "../components/footer/Footer";
@@ -10,6 +11,7 @@ export default function Home() {
     <div className="min-h-screen">
       <HeroSection />
       <AboutSection />
+      <LeadershipSection />
       <ServicesSection />
       <ContactSection />
       <Footer />
