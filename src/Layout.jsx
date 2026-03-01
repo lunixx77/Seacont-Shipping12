@@ -101,7 +101,7 @@ export default function Layout({ children }) {
             <img
               src={seacontLogo}
               alt="Seacont Shipping LLC"
-              className="h-12 w-auto object-contain"
+              className="h-[88px] w-auto object-contain"
             />
           </button>
 

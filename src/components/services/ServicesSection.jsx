@@ -1,21 +1,11 @@
 import React from "react";
-import { Ship, Container, Monitor, ShieldCheck } from "lucide-react";
+import { Container, ShieldCheck } from "lucide-react";
 
 const services = [
   {
-    icon: Ship,
-    title: "Sea Freight Transportation",
-    description: "Our core competency: FCL (Full Container Load) and LCL (Less than Container Load) shipments via sea. We manage the entire process — booking, documentation, customs coordination, and delivery."
-  },
-  {
     icon: Container,
-    title: "Customised Logistics Solutions",
-    description: "Every client has unique needs. We design bespoke logistics workflows for B2B clients, optimising routes, carriers, and transit times to maximise efficiency and reduce costs."
-  },
-  {
-    icon: Monitor,
-    title: "IT Projects",
-    description: "We bridge the gap between shipping operations and technology. From freight management systems to tracking integrations, we support the digital transformation of your logistics."
+    title: "Customised Solutions",
+    description: "Every client has unique needs. We design bespoke workflows for B2B clients, maximising efficiency and reducing costs."
   },
   {
     icon: ShieldCheck,

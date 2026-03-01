@@ -9,7 +9,7 @@ export default function Footer() {
           <img
             src={seacontLogo}
             alt="Seacont Shipping LLC"
-            className="h-10 w-auto object-contain rounded bg-white/90 px-2 py-1"
+            className="h-10 w-auto object-contain"
           />
         </div>
         <p className="text-white/30 text-sm">

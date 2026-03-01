@@ -2,9 +2,9 @@ import React from "react";
 
 const facts = [
   { label: "Founded", value: "2018" },
-  { label: "Employees", value: "11–50" },
+  { label: "Employees", value: "5+" },
   { label: "Headquarters", value: "Belgrade" },
-  { label: "Speciality", value: "Sea Freight / Container" },
+  { label: "Speciality", value: "Backup Services" },
 ];
 
 export default function AboutSection() {
@@ -25,7 +25,7 @@ export default function AboutSection() {
               Seacont Shipping LLC was founded in 2018, focusing on servicing B2B channels. Our customised solutions exceed our customers' expectations by providing solutions to further enhance their business.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              We offer back-up services, customized logistic solutions, and are specialised in seafreight transportation and IT projects. We work closely with our clients in a true working partnership, with the philosophy of being agile and nimble to exceed expectations.
+              We offer back-up services and customised solutions. We work closely with our clients in a true working partnership, with the philosophy of being agile and nimble to exceed expectations.
             </p>
             <p className="text-gray-700 leading-relaxed">
               Our culture is to provide excellent customer service, leverage the latest technologies, and offer flexibility to all customers — which differentiates Seacont Shipping from other providers. We guarantee to deliver value at the most competitive price.
